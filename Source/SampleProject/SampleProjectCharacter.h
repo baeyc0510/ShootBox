@@ -48,7 +48,19 @@ protected:
 	/** Mouse Look Input Action */
 	UPROPERTY(EditAnywhere, Category ="Input")
 	class UInputAction* MouseLookAction;
-	
+
+	/** 달리기 입력 액션 */
+	UPROPERTY(EditAnywhere, Category ="Input")
+	UInputAction* SprintAction;
+
+	/** 걷기 속도 */
+	UPROPERTY(EditAnywhere, Category ="Movement")
+	float WalkSpeed = 500.0f;
+
+	/** 달리기 속도 */
+	UPROPERTY(EditAnywhere, Category ="Movement")
+	float SprintSpeed = 1000.0f;
+
 public:
 	ASampleProjectCharacter();
 
@@ -75,6 +87,14 @@ protected:
 	/** Handles jump end inputs from either controls or UI interfaces */
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoJumpEnd();
+
+	/** 달리기 시작 입력 처리 */
+	UFUNCTION(BlueprintCallable, Category="Input")
+	virtual void DoSprintStart();
+
+	/** 달리기 종료 입력 처리 */
+	UFUNCTION(BlueprintCallable, Category="Input")
+	virtual void DoSprintEnd();
 
 protected:
 

@@ -42,6 +42,9 @@ ASampleProjectCharacter::ASampleProjectCharacter()
 	// Configure character movement
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
 	GetCharacterMovement()->AirControl = 0.5f;
+
+	// 기본 이동 속도 설정
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
 
 void ASampleProjectCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -59,6 +62,10 @@ void ASampleProjectCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 		// Looking/Aiming
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ASampleProjectCharacter::LookInput);
 		EnhancedInputComponent->BindAction(MouseLookAction, ETriggerEvent::Triggered, this, &ASampleProjectCharacter::LookInput);
+
+		// 달리기
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Started, this, &ASampleProjectCharacter::DoSprintStart);
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &ASampleProjectCharacter::DoSprintEnd);
 	}
 	else
 	{
@@ -117,4 +124,16 @@ void ASampleProjectCharacter::DoJumpEnd()
 {
 	// pass StopJumping to the character
 	StopJumping();
+}
+
+void ASampleProjectCharacter::DoSprintStart()
+{
+	// 달리기 속도로 변경
+	GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
+}
+
+void ASampleProjectCharacter::DoSprintEnd()
+{
+	// 걷기 속도로 복귀
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
