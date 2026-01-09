@@ -44,7 +44,7 @@ ASampleProjectCharacter::ASampleProjectCharacter()
 	GetCharacterMovement()->AirControl = 0.5f;
 
 	// 기본 이동 속도 설정
-	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+	GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
 }
 
 void ASampleProjectCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -135,5 +135,5 @@ void ASampleProjectCharacter::DoSprintStart()
 void ASampleProjectCharacter::DoSprintEnd()
 {
 	// 걷기 속도로 복귀
-	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+	GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
 }

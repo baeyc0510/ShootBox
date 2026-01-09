@@ -55,7 +55,7 @@ protected:
 
 	/** 걷기 속도 */
 	UPROPERTY(EditAnywhere, Category ="Movement")
-	float WalkSpeed = 500.0f;
+	float BaseWalkSpeed = 500.0f;
 
 	/** 달리기 속도 */
 	UPROPERTY(EditAnywhere, Category ="Movement")

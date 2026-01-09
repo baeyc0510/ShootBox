@@ -32,7 +32,7 @@ void AHorrorCharacter::BeginPlay()
 	SprintMeter = SprintTime;
 
 	// Initialize the walk speed
-	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+	GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
 
 	// start the sprint tick timer
 	GetWorld()->GetTimerManager().SetTimer(SprintTimer, this, &AHorrorCharacter::SprintFixedTick, SprintFixedTickTime, true);
@@ -88,7 +88,7 @@ void AHorrorCharacter::DoEndSprint()
 	if (!bRecovering)
 	{
 		// set the default walk speed
-		GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+		GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
 
 		// call the sprint state changed delegate
 		OnSprintStateChanged.Broadcast(false);
@@ -98,7 +98,7 @@ void AHorrorCharacter::DoEndSprint()
 void AHorrorCharacter::SprintFixedTick()
 {
 	// are we out of recovery, still have stamina and are moving faster than our walk speed?
-	if (bSprinting && !bRecovering && GetVelocity().Length() > WalkSpeed)
+	if (bSprinting && !bRecovering && GetVelocity().Length() > BaseWalkSpeed)
 	{
 
 		// do we still have meter to burn?
@@ -129,7 +129,7 @@ void AHorrorCharacter::SprintFixedTick()
 			bRecovering = false;
 
 			// set the walk or sprint speed depending on whether the sprint button is down
-			GetCharacterMovement()->MaxWalkSpeed = bSprinting ? SprintSpeed : WalkSpeed;
+			GetCharacterMovement()->MaxWalkSpeed = bSprinting ? SprintSpeed : BaseWalkSpeed;
 
 			// update the sprint state depending on whether the button is down or not
 			OnSprintStateChanged.Broadcast(bSprinting);
