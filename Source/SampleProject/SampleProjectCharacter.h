@@ -49,6 +49,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category ="Input")
 	class UInputAction* MouseLookAction;
 	
+	/** 카메라 Y오프셋 */
+	UPROPERTY(EditAnywhere, Category ="Movement")
+	float CameraOffsetY = 7.f;
+	
 public:
 	ASampleProjectCharacter();
 
