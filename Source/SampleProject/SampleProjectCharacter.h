@@ -61,6 +61,11 @@ protected:
 	UPROPERTY(EditAnywhere, Category ="Movement")
 	float SprintSpeed = 1000.0f;
 
+	
+	/** 카메라 Y오프셋 */
+	UPROPERTY(EditAnywhere, Category ="Movement")
+	float CameraOffsetY = 7.f;
+	
 public:
 	ASampleProjectCharacter();
 

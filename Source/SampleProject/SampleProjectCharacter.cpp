@@ -26,7 +26,7 @@ ASampleProjectCharacter::ASampleProjectCharacter()
 	// Create the Camera Component	
 	FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("First Person Camera"));
 	FirstPersonCameraComponent->SetupAttachment(FirstPersonMesh, FName("head"));
-	FirstPersonCameraComponent->SetRelativeLocationAndRotation(FVector(-2.8f, 5.89f, 0.0f), FRotator(0.0f, 90.0f, -90.0f));
+	FirstPersonCameraComponent->SetRelativeLocationAndRotation(FVector(-2.8f, CameraOffsetY, 0.0f), FRotator(0.0f, 90.0f, -90.0f));
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
 	FirstPersonCameraComponent->bEnableFirstPersonFieldOfView = true;
 	FirstPersonCameraComponent->bEnableFirstPersonScale = true;
